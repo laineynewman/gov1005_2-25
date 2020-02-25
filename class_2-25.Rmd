@@ -12,7 +12,7 @@ library(tidyverse)
 
 ## R Markdown
 
-```{r}
+```{r, echo = FALSE}
 sample(x = 1:6, size = 1)
 
 roll_one_die <- function() {
@@ -23,7 +23,15 @@ roll_two_dice <- function(){
   roll_one_die() + roll_one_die()
 }
 
-map_int(1:10, ~ roll_two_dice())
+
+results <- map_int(1:1000, ~ roll_two_dice())
+
+results_tibble <- tibble(results)
+
+
+ggplot(results_tibble, aes(results)) + geom_histogram(binwidth = 1)
+
+
 
 
 
